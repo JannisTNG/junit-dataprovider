@@ -34,8 +34,9 @@ jobs:
       run: ./gradlew test
     - name: Integration Tests
       run: ./gradlew integTest
-    - name: Check Failed Tests
-      uses: chrismaille/junito@v1
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
       with:
-        filename: "**/build/test-results/**/*.xml"
-  
+        files: |
+          **/build/test-results/**/*.xml  
